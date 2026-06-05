@@ -1,0 +1,41 @@
+[project]
+name = "RecommandationsCyber"
+version = "0.1.0"
+description = "Une interface permettant d'interroger [Albert](https://albert.etalab.gouv.fr), le modèle IA, chargé avec des guides de l'ANSSI."
+requires-python = "==3.14.*"
+dependencies = [
+    "httpx",
+    "fastmcp>=3.0.0",
+    "requests>=2.33.0",
+    "starlette>1.0.1",
+    "typing",
+]
+
+[dependency-groups]
+dev = [
+    "mypy",
+    "pytest==9.0.3",
+    "ruff",
+    "types-requests",
+    "pytest-asyncio",
+    "pipdeptree"
+]
+
+[tool.mypy]
+files = ["src/**/*.py", "tests/**/*.py"]
+explicit_package_bases = true
+mypy_path = ["src", "tests/mocks"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src", "tests/mocks"
+]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.uv]
+exclude-newer = "1 week"
